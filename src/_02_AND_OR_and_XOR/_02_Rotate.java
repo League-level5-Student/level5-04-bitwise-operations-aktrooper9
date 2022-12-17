@@ -2,6 +2,8 @@ package _02_AND_OR_and_XOR;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 /*
@@ -27,7 +29,6 @@ import org.junit.jupiter.api.Test;
  *      11111111 11111111 11111111 11110001   // rotate left by 1
  */
 public class _02_Rotate {
-    
     int rotateLeft(int value, int rotateAmount) {
         return -1;
     }
@@ -39,6 +40,27 @@ public class _02_Rotate {
     @Test
     void testRotateLeft() {
         int i = -8;
+
+        String binaryStr = "";
+
+        do {
+            // 1. Logical right shift by 1
+            int quotient = i >>> 1;
+
+            // 2. Check remainder and add '1' or '0'
+            if( i % 2 != 0 ){
+                binaryStr = '1' + binaryStr;
+            } else {
+                binaryStr = '0' + binaryStr;
+            }
+
+            i = quotient;
+
+            // 3. Repeat until number is 0
+        } while( i != 0 );
+
+
+    
 
         int result = rotateLeft(i, 1);
         System.out.println("Left rotate tests");
