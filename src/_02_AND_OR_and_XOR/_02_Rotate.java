@@ -30,11 +30,21 @@ import org.junit.jupiter.api.Test;
  */
 public class _02_Rotate {
     int rotateLeft(int value, int rotateAmount) {
-        return -1;
+    	return (value<<rotateAmount)|(value>>>(32-rotateAmount));
     }
     
     int rotateRight(int value, int rotateAmount) {
-        return -1;
+//    	int x= (value&1);
+//    	if(x==1) {
+//    		value = value>>>1;
+//    		value = value|0b10000000000000000000000000000000;
+//    	
+//    	}
+//    	else {
+//    		value = value>>>1;
+//    	}
+    	return value>>>rotateAmount|value<<(32-rotateAmount);
+ 
     }
     
     @Test
