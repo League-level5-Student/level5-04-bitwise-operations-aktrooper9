@@ -29,20 +29,21 @@ import org.junit.jupiter.api.Test;
  *      11111111 11111111 11111111 11110001   // rotate left by 1
  */
 public class _02_Rotate {
-    int rotateLeft(int value, int rotateAmount) {
-    	return (value<<rotateAmount)|(value>>>(32-rotateAmount));
+    int rotateLeft(int value, int rotateAmount) { 	
+    	//int x= (value&1);
+    	//if(x==1) {
+    //		value = value<<1;
+   // 		value = value|0b00000000000000000000000000000001;
+   	
+ //   	}
+//    	else {
+ //   		value = value<<1;
+//    	}
+    	return  value<<(rotateAmount)|value>>>32-rotateAmount;
     }
     
     int rotateRight(int value, int rotateAmount) {
-//    	int x= (value&1);
-//    	if(x==1) {
-//    		value = value>>>1;
-//    		value = value|0b10000000000000000000000000000000;
-//    	
-//    	}
-//    	else {
-//    		value = value>>>1;
-//    	}
+//   
     	return value>>>rotateAmount|value<<(32-rotateAmount);
  
     }
@@ -51,23 +52,23 @@ public class _02_Rotate {
     void testRotateLeft() {
         int i = -8;
 
-        String binaryStr = "";
+    //    String binaryStr = "";
 
-        do {
+  //      do {
             // 1. Logical right shift by 1
-            int quotient = i >>> 1;
+ //           int quotient = i >>> 1;
 
             // 2. Check remainder and add '1' or '0'
-            if( i % 2 != 0 ){
-                binaryStr = '1' + binaryStr;
-            } else {
-                binaryStr = '0' + binaryStr;
-            }
-
-            i = quotient;
-
+ //           if( i % 2 != 0 ){
+//                binaryStr = '1' + binaryStr;
+ //           } else {
+ //               binaryStr = '0' + binaryStr;
+  //          }
+//
+     //       i = quotient;
+//
             // 3. Repeat until number is 0
-        } while( i != 0 );
+      //  } while( i != 0 );
 
 
     
