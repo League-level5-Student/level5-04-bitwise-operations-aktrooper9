@@ -54,25 +54,9 @@ public class LightSwitches implements GameControlScene {
 	 * return true if pink is on (bit 6 == 1)
 	 */
 	boolean isLightOn(int index) {
-		int lightsOnOff2 = lightsOnOff;
-		String binaryStr = "";
-
-		do {
-			int quotient = lightsOnOff2 >>> 1;
-
-			if (lightsOnOff2 % 2 != 0) {
-				binaryStr = '1' + binaryStr;
-			} else {
-				binaryStr = '0' + binaryStr;
-			}
-
-			lightsOnOff2 = quotient;
-
-		} while (lightsOnOff2 != 0);
-		int x = Integer.parseInt(binaryStr);
-		x = x & index;
-		if (x == 0) {
-			return false;
+		int bit = (lightsOnOff >> index) & 1;
+		if (bit == 1) {
+			return true;
 		} else {
 			return false;
 		}
@@ -83,36 +67,10 @@ public class LightSwitches implements GameControlScene {
 	 * yellow only (set bit 4 = 1)
 	 */
 	void turnLightOn(int index) {
-
-		String binaryStr = "";
-
-		do {
-			int quotient = lightsOnOff >>> 1;
-
-			if (lightsOnOff % 2 != 0) {
-				binaryStr = '1' + binaryStr;
-			} else {
-				binaryStr = '0' + binaryStr;
-			}
-
-			lightsOnOff = quotient;
-
-		} while (lightsOnOff != 0);
-		String binary = "";
-		char b;
-		for (int i = 0; i < binaryStr.length(); i++) {
-			if (i == index) {
-				b = 1;
-			} else {
-				b = binaryStr.charAt(i);
-			}
-			binary = binary + b;
-		}
-		System.out.println(binary + " binaryStr: " + binaryStr);
-		int x = Integer.parseInt(binaryStr);
-		int y = Integer.parseInt(binary);
-		lightsOnOff = x | y;
-		System.out.println(lightsOnOff + " " + x + " " + y);
+int i =1;
+i=i<<index;
+lightsOnOff=lightsOnOff|i;
+System.out.println(lightsOnOff);
 	}
 
 	/*
@@ -120,6 +78,7 @@ public class LightSwitches implements GameControlScene {
 	 * bit 0 = 0)
 	 */
 	void turnLightOff(int index) {
+lightsOnOff=lightsOnOff&0;
 
 	}
 
@@ -128,7 +87,8 @@ public class LightSwitches implements GameControlScene {
 	 * 0b01100110 // lights 1, 2, 5, 6 on
 	 */
 	void turnMultiLightsOn(int lightsBitmap) {
-
+		
+		lightsOnOff=lightsOnOff|lightsBitmap;
 	}
 
 	/*
@@ -136,6 +96,7 @@ public class LightSwitches implements GameControlScene {
 	 * 0b10000001 // lights 0, 7 off
 	 */
 	void turnMultiLightsOff(int lightsBitmap) {
+		lightsOnOff=lightsOnOff&lightsBitmap;
 
 	}
 
@@ -146,6 +107,7 @@ public class LightSwitches implements GameControlScene {
 	 * cyan(7) off, orange(3) and yellow(4) on
 	 */
 	void toggleLights(int lightsBitmap) {
+		lightsOnOff=lightsOnOff^lightsBitmap;
 
 	}
 
